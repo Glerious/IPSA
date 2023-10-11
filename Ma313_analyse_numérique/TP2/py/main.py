@@ -2,8 +2,6 @@ from numpy.linalg import solve, norm
 from numpy import ndarray, dot, array, transpose
 from matplotlib.pyplot import semilogy, title, show
 
-from time import sleep
-
 from Modules.SysMatrix import SysOneMatrix, SysTwoMatrix, SysThreeMatrix
 from Modules.Jacobi import Jacobi
 from Modules.GaussSeidel import GaussSeidel
