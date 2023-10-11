@@ -1,7 +1,7 @@
-from numpy import ndarray, dot
+from numpy import ndarray, dot, diag, tril
 from numpy.linalg import inv, eigvals
 
-class MethodeModel():
+class MethodeModel:
     def __init__(self, A: ndarray) -> None:
         self.A : ndarray = A
         self.M : ndarray = self.initM()
@@ -18,3 +18,22 @@ class MethodeModel():
     
     def own_value(self):
         return abs(eigvals(self.initMatrixMethod()))
+    
+class Jacobi(MethodeModel):
+    def initM(self):
+        return diag(diag(self.A))
+    
+class GaussSeidel(MethodeModel):
+    def initM(self):
+        return tril(self.A)
+    
+class Relaxation(MethodeModel):
+    def __init__(self, A : ndarray, w : int) -> None:
+        self.w : int = w
+        super().__init__(A)
+
+    def initM(self):
+        return ((1 - self.w)/self.w)*diag(diag(self.A)) + tril(self.A)
+    
+    def spectral_ray(self):
+        return abs(max(self.own_value()))
