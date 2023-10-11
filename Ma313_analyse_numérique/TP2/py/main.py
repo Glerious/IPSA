@@ -3,10 +3,7 @@ from numpy import ndarray, dot, array, transpose
 from matplotlib.pyplot import semilogy, title, show
 
 from Modules.SysMatrix import SysOneMatrix, SysTwoMatrix, SysThreeMatrix
-from Modules.Jacobi import Jacobi
-from Modules.GaussSeidel import GaussSeidel
-from Modules.Relaxation import Relaxation
-
+from Modules.MethodeModel import Jacobi, GaussSeidel, Relaxation
 
 limite1 = 10e-5
 limite2 = 10e-10
@@ -48,7 +45,7 @@ def system(func):
 
 @system
 def sys_one():
-    matrix_size = 3
+    matrix_size = 200
 
     sys_one = SysOneMatrix(matrix_size)
     return sys_one.A, sys_one.b
@@ -70,6 +67,5 @@ def sys_three():
 
 if __name__.__eq__("__main__"):
     sys_one()
-    # sys_two()
-    # sys_three()
-    # print(test())
+    sys_two()
+    sys_three()
