@@ -34,7 +34,7 @@ class SysOneMatrix(SysMatrix):
     def coefficient_A(self, i: int, j: int) -> float:
         return 1 / (5 + 2*i + 3*j) if i != j else 1
     
-class SysTwoMatrix():
+class SysTwoMatrix(SysMatrix):
     def coefficient_A(self, i: int, j: int) -> float:
         return 1 / (5 + 4*abs(i - j))
     

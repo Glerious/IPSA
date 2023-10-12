@@ -24,7 +24,7 @@ def system(func):
         def graph_relax(A : ndarray):
             scan = range(1, 199)
 
-            x = [i for i in scan]
+            x = [i/100 for i in scan]
             y = [Relaxation(A, i/100).spectral_ray() for i in scan]
 
             semilogy(x, y)
@@ -32,16 +32,18 @@ def system(func):
             show()
 
         jacobi = Jacobi(func()[0])
-        jacobi_limite1 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite1)
-        jacobi_limite2 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite2)
-        print(f"Méthode Jaconienne :\n > 10e-5 : {jacobi_limite1} itération. \n > 10e-10 : {jacobi_limite2} iterations.")
+        # jacobi_limite1 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite1)
+        # jacobi_limite2 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite2)
+        # print(f"Méthode Jaconienne :\n > 10e-5 : {jacobi_limite1} itération. \n > 10e-10 : {jacobi_limite2} iterations.")
+        print(f"Méthode Jaconienne :\n {jacobi.spectral_ray()}")
 
         gaussseidel = GaussSeidel(func()[0])
-        gaussseidel_limite1 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite1)
-        gaussseidel_limite2 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite2)
-        print(f"Méthode Gaussiènne :\n > 10e-5 : {gaussseidel_limite1} itération. \n > 10e-10 : {gaussseidel_limite2} iterations.")
+        # gaussseidel_limite1 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite1)
+        # gaussseidel_limite2 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite2)
+        # print(f"Méthode Gaussiènne :\n > 10e-5 : {gaussseidel_limite1} itération. \n > 10e-10 : {gaussseidel_limite2} iterations.")
+        print(f"Méthode Gaussiènne :\n {gaussseidel.spectral_ray()}")
 
-        graph_relax(A = func()[0])
+        # graph_relax(A = func()[0])
     return wrapper
 
 @system
@@ -68,5 +70,5 @@ def sys_three():
 
 if __name__.__eq__("__main__"):
     sys_one()
-    # sys_two()
-    # sys_three()
+    sys_two()
+    sys_three()

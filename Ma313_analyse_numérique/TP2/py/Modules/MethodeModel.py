@@ -19,6 +19,9 @@ class MethodeModel:
     def own_value(self):
         return abs(eigvals(self.initMatrixMethod()))
     
+    def spectral_ray(self):
+        return abs(max(self.own_value()))
+    
 class Jacobi(MethodeModel):
     def initM(self):
         return diag(diag(self.A))
@@ -34,6 +37,3 @@ class Relaxation(MethodeModel):
 
     def initM(self):
         return ((1 - self.w)/self.w)*diag(diag(self.A)) + tril(self.A)
-    
-    def spectral_ray(self):
-        return abs(max(self.own_value()))
