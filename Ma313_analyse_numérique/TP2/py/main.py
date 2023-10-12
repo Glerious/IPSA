@@ -8,6 +8,7 @@ from Modules.MethodeModel import Jacobi, GaussSeidel, Relaxation
 limite1 = 10e-5
 limite2 = 10e-10
 limite_iterate = 200
+matrix_size = 200
 
 def system(func):
     def wrapper():
@@ -44,28 +45,22 @@ def system(func):
     return wrapper
 
 @system
-def sys_one():
-    matrix_size = 200
-
+def sys_one(size):
     sys_one = SysOneMatrix(matrix_size)
     return sys_one.A, sys_one.b
 
 @system
-def sys_two():
-    matrix_size = 200
-
+def sys_two(size):
     sys_two = SysTwoMatrix(matrix_size)
     return sys_two.A, sys_two.b
 
 @system
-def sys_three():
-    matrix_size = 200
-
+def sys_three(size):
     sys_three = SysThreeMatrix(matrix_size)
     return sys_three.A, sys_three.b
 
 
 if __name__.__eq__("__main__"):
-    sys_one()
-    sys_two()
-    sys_three()
+    sys_one(200)
+    sys_two(200)
+    sys_three(200)
