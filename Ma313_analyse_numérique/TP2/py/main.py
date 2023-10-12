@@ -1,5 +1,5 @@
 from numpy.linalg import solve, norm
-from numpy import ndarray, dot, array, transpose
+from numpy import ndarray, dot, zeros, transpose, array
 from matplotlib.pyplot import semilogy, title, show
 
 from Modules.SysMatrix import SysOneMatrix, SysTwoMatrix, SysThreeMatrix
@@ -8,12 +8,12 @@ from Modules.MethodeModel import Jacobi, GaussSeidel, Relaxation
 limite1 = 10e-5
 limite2 = 10e-10
 limite_iterate = 200
-matrix_size = 200
 
 def system(func):
     def wrapper():
-        def loop_limite(M: ndarray, N: ndarray, b: ndarray, limite: int, x: ndarray = transpose(array([[0, 0, 0]]))):
+        def loop_limite(M: ndarray, N: ndarray, b: ndarray, limite: int, x_init: ndarray = transpose([zeros(200)])):
             loop : int = 1
+            x : ndarray = x_init
             new_x = solve(M, dot(N, x) - b)
             while norm(new_x - x) > limite and loop < limite_iterate:
                 x = new_x
@@ -45,22 +45,28 @@ def system(func):
     return wrapper
 
 @system
-def sys_one(size):
+def sys_one():
+    matrix_size = 200
+
     sys_one = SysOneMatrix(matrix_size)
     return sys_one.A, sys_one.b
 
 @system
-def sys_two(size):
+def sys_two():
+    matrix_size = 200
+
     sys_two = SysTwoMatrix(matrix_size)
     return sys_two.A, sys_two.b
 
 @system
-def sys_three(size):
+def sys_three():
+    matrix_size = 200
+        
     sys_three = SysThreeMatrix(matrix_size)
     return sys_three.A, sys_three.b
 
 
 if __name__.__eq__("__main__"):
-    sys_one(200)
-    sys_two(200)
-    sys_three(200)
+    sys_one()
+    # sys_two()
+    # sys_three()
