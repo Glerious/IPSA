@@ -1,6 +1,6 @@
 from numpy.linalg import solve, norm
 from numpy import ndarray, dot, zeros, transpose, array
-from matplotlib.pyplot import semilogy, title, show
+from matplotlib.pyplot import semilogy, title, show, plot
 
 from Modules.SysMatrix import SysOneMatrix, SysTwoMatrix, SysThreeMatrix
 from Modules.MethodeModel import Jacobi, GaussSeidel, Relaxation
@@ -27,23 +27,23 @@ def system(func):
             x = [i/100 for i in scan]
             y = [Relaxation(A, i/100).spectral_ray() for i in scan]
 
-            semilogy(x, y)
+            plot(x, y)
             title("Rayon Spectral de la méthode de relaxation en fonctions de w")
             show()
 
         jacobi = Jacobi(func()[0])
-        # jacobi_limite1 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite1)
-        # jacobi_limite2 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite2)
-        # print(f"Méthode Jaconienne :\n > 10e-5 : {jacobi_limite1} itération. \n > 10e-10 : {jacobi_limite2} iterations.")
+        jacobi_limite1 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite1)
+        jacobi_limite2 = loop_limite(M=jacobi.M, N=jacobi.N, b = func()[1], limite=limite2)
+        print(f"Méthode Jaconienne :\n > 10e-5 : {jacobi_limite1} itération. \n > 10e-10 : {jacobi_limite2} iterations.")
         print(f"Méthode Jaconienne :\n {jacobi.spectral_ray()}")
 
         gaussseidel = GaussSeidel(func()[0])
-        # gaussseidel_limite1 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite1)
-        # gaussseidel_limite2 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite2)
-        # print(f"Méthode Gaussiènne :\n > 10e-5 : {gaussseidel_limite1} itération. \n > 10e-10 : {gaussseidel_limite2} iterations.")
+        gaussseidel_limite1 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite1)
+        gaussseidel_limite2 = loop_limite(M=gaussseidel.M, N=gaussseidel.N, b = func()[1], limite=limite2)
+        print(f"Méthode Gaussiènne :\n > 10e-5 : {gaussseidel_limite1} itération. \n > 10e-10 : {gaussseidel_limite2} iterations.")
         print(f"Méthode Gaussiènne :\n {gaussseidel.spectral_ray()}")
 
-        # graph_relax(A = func()[0])
+        graph_relax(A = func()[0])
     return wrapper
 
 @system
