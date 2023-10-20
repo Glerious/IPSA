@@ -36,4 +36,4 @@ class Relaxation(MethodeModel):
         super().__init__(A)
 
     def initM(self):
-        return ((1 - self.w)/self.w)*diag(diag(self.A)) + tril(self.A)
+        return (1/self.w)*diag(diag(self.A)) + tril(self.A, -1)

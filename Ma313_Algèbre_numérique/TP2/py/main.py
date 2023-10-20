@@ -27,7 +27,7 @@ def system(func):
             x = [i/100 for i in scan]
             y = [Relaxation(A, i/100).spectral_ray() for i in scan]
 
-            plot(x, y)
+            semilogy(x, y)
             title("Rayon Spectral de la méthode de relaxation en fonctions de w")
             show()
 
@@ -70,5 +70,5 @@ def sys_three():
 
 if __name__.__eq__("__main__"):
     sys_one()
-    sys_two()
-    sys_three()
+    # sys_two()
+    # sys_three()

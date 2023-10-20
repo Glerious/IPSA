@@ -41,3 +41,8 @@ class SysTwoMatrix(SysMatrix):
 class SysThreeMatrix(SysMatrix):    
     def coefficient_A(self, i: int, j: int) -> float:
         return 7 if i == j else -2 if i == j - 1 else -4 if i == j + 1  else 0
+    
+
+
+new = SysThreeMatrix(5)
+print(new.A)
