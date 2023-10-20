@@ -1,4 +1,5 @@
 from addons.BetterTkinter import *
+from addons.BetterText import *
 
 fenetre = Interface("fenetre", "yellow", "300x300")
 fenetre.add(Volet(fenetre.get(), bg="blue"), "volet01h")
