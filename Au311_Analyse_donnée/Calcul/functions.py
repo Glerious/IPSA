@@ -49,8 +49,6 @@ class Functions:
         return (y - self.b) / self.a
     
     def graph(self):
-        scan = range(1, 199)
-
         x = self.initx()
         y = self.inity()
 
