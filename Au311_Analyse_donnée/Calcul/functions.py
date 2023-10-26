@@ -1,4 +1,5 @@
 from math import sqrt
+from matplotlib.pyplot import show, plot, title
 
 class Functions:
     def __init__(self, given : dict) -> None:
@@ -46,3 +47,13 @@ class Functions:
 
     def antifunc(self, y : float):
         return (y - self.b) / self.a
+    
+    def graph(self):
+        scan = range(1, 199)
+
+        x = self.initx()
+        y = self.inity()
+
+        plot(x, y)
+        title("Rayon Spectral de la méthode de relaxation en fonctions de w")
+        show()
