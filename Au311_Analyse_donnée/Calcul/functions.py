@@ -63,10 +63,22 @@ class Functions:
         y = self.giveny
         scatter(x, y)
 
-        x = (0, max(self.givenx))
-        y = (self.func(i) for i in x)
-        plot(x, y)
+        x = [0, max(self.givenx)]
+        y = [self.func(i) for i in x]
+        plot(x, y, label=self.printfunc())
         
         legend()
         title("Rayon Spectral de la méthode de relaxation en fonctions de w")
         show()
+
+    def adjusty(self):
+        return [self.func(i) for i in self.givenx]
+    
+    def distancey(self):
+        return [abs(i - j) for i, j in zip(self.adjusty(), self.giveny)]
+    
+    def residual_var(self):
+        return self.covyy * self.r**2
+    
+    def explained_var(self):
+        return self.covyy * (1 - self.r**2)
