@@ -1,5 +1,5 @@
 from math import sqrt
-from matplotlib.pyplot import show, plot, title
+from matplotlib.pyplot import show, scatter, title, legend, text, plot
 
 class Functions:
     def __init__(self, given : dict) -> None:
@@ -49,9 +49,24 @@ class Functions:
         return (y - self.b) / self.a
     
     def graph(self):
-        x = self.initx()
-        y = self.inity()
+        """ Affiche le graphique de la méthode de régrassion linéaire
+        - Affiche le graphiques de point
+        - Affiche le point G
+        - Affiche la courbe de régréssion linaire ainsi que son équation    
+        """
+        x = self.x_
+        y = self.y_
+        size = (200)
+        scatter(x, y, s=size, c="coral", label="Point G")
 
+        x = self.givenx
+        y = self.giveny
+        scatter(x, y)
+
+        x = (0, max(self.givenx))
+        y = (self.func(i) for i in x)
         plot(x, y)
+        
+        legend()
         title("Rayon Spectral de la méthode de relaxation en fonctions de w")
         show()
