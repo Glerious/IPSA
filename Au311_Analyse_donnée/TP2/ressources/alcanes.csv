@@ -1,0 +1,22 @@
+N°;Nom de l'alcane;PE (°C);NA;H;XI
+1;pentane;36.1;5;5.035;2.4114
+2;2-methylbutane;27.9;5;5.222;2.27
+3;2-methylpentane;60.3;6;6.708;2.277
+4;3-methylpentane;63.3;6;6.757;2.808
+5;2,2-dimethylbutane;49.7;6;7.083;2.561
+6;2,3-dimethylbutane;58;6;6.944;2.643
+7;heptane;98.4;7;7.99;3.414
+8;2-methylhexane;90.1;7;8.212;3.27
+9;3-methylhexane;91.9;7;8.283;3.308
+10;3-ethylpentane;93.5;7;8.354;3.346
+11;2,2-dimethylpentane;79.2;7;8.632;3.061
+12;4-methyleptane;117.7;8;9.837;3.808
+13;3-ethylhexane;118.5;8;9.92;3.846
+14;2,2-dimethylhexane;106.8;8;10.176;3.561
+15;2,3-dimethylhexane;115.6;8;10.108;3.681
+16;2,4-dimethylhexane;109.4;8;10.059;3.664
+17;2,5-dimethylhexane;109.1;8;9.966;3.626
+18;3,3-dimethylhexane;112;8;10.318;3.621
+19;nonane;150.8;9;11.029;4.414
+20;4-ethylheptane;142.2;9;11.514;4.346
+21;2,2-dimethylheptane;132.7;9;11.723;4.061
