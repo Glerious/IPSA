@@ -1,5 +1,5 @@
 from math import sqrt
-from matplotlib.pyplot import show, scatter, title, legend, text, plot
+from matplotlib.pyplot import show, scatter, title, legend, plot
 
 class Functions:
     def __init__(self, given : dict) -> None:
