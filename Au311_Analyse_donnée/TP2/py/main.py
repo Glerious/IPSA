@@ -1,6 +1,8 @@
 import pandas as pd
 from matplotlib.pyplot import scatter, show, title
 from functions import Functions
+from numpy import array, ndarray, ones
+from numpy.linalg import solve, norm
 
 
 #import de donnée
@@ -12,17 +14,22 @@ na = data.iloc[:,3]
 h = data.iloc[:,4]
 x1 = data.iloc[:,5]
 
-given : dict = dict(zip(h, pe))
+givens : list = [(h, pe), (x1, pe), (na, pe)]
 
-correlation = Functions(given=given)
-correlation.graph()
-print(correlation.r)
+def studies(given = list):
+    for i in given:
+        given : dict = dict(zip(i[0], i[1]))
+        correlation = Functions(given=given)
+        correlation.graph()
+        print(correlation.r)
 
+A : ndarray = array([list(na), list(h), list(x1), ones(len(pe))])
+b : ndarray = array(list(pe))
 
+# print(A)
 
+calcul = solve(A@A.T, A@b)
+print(calcul)
 
-
-
-
-
+print(norm())
 

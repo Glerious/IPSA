@@ -44,7 +44,7 @@ class Functions:
 
         x = self.givenx
         y = self.giveny
-        scatter(x, y)
+        scatter(x, y, marker='$\U0001F601$')
 
         x = [min(self.givenx), max(self.givenx)]
         y = [self.func(i) for i in x]
