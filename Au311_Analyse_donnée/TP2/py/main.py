@@ -25,11 +25,9 @@ def studies(given = list):
 
 A : ndarray = array([list(na), list(h), list(x1), ones(len(pe))])
 b : ndarray = array(list(pe))
+x : ndarray = solve(A@A.T, A@b)
+min_x = norm(A.T@x - b)
+ratio = min_x / norm(b)
 
-# print(A)
-
-calcul = solve(A@A.T, A@b)
-print(calcul)
-
-print(norm())
+print(min_x, ratio)
 
