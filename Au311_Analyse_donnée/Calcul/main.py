@@ -1,5 +1,3 @@
-from addons.BetterTkinter import *
-from addons.BetterText import *
 from functions import Functions
 
 given : dict = {2: 4, 4: 11, 8: 15, 10: 20, 24: 39, 40: 62, 52: 85}
