@@ -7,8 +7,8 @@ class Functions:
         self.giveny : tuple = tuple(given.values())
         if not len(self.givenx).__eq__(len(self.giveny)):
             raise ValueError("legnth of list x and list y are different. Check duplicate number !")
-        self.x_ : float = self.init_(self.givenx)
-        self.y_ : float = self.init_(self.giveny)
+        self.x_ : float = self.moy(self.givenx)
+        self.y_ : float = self.moy(self.giveny)
         self.covxx : float = self.initcov(self.givenx)
         self.covyy : float = self.initcov(self.giveny)
         self.covxy : float = self.initcov(self.givenx, self.giveny)
@@ -16,8 +16,11 @@ class Functions:
         self.a : float = self.covxy/self.covxx
         self.b : float = self.y_ - self.a * self.x_
 
-    def init_(self, listof: tuple) -> float:
-        return 1/len(listof) * sum(listof)
+    def moy(self, oflist: tuple) -> float:
+        """Calcule la moyenne d'une liste
+        Returned type : float
+        """
+        return sum(oflist) / len(oflist)
     
     def initcov(self, lista : tuple, listb : tuple = None):
         if listb is None:
@@ -34,10 +37,10 @@ class Functions:
         return (y - self.b) / self.a
     
     def graph(self):
-        """ Affiche le graphique de la méthode de régrassion linéaire
-        - Affiche le graphiques de point
+        """ Affiche le graphique de la méthode de régression linéaire
+        - Affiche le nuage de point
         - Affiche le point G
-        - Affiche la courbe de régréssion linaire ainsi que son équation    
+        - Affiche la courbe de régréssion linaire ainsi que son équation   
         """
         size = (150)
         scatter(self.x_, self.y_, s=size, c="coral", label="Point G")
