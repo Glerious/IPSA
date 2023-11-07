@@ -3,8 +3,8 @@ from matplotlib.pyplot import show, scatter, title, legend, text, plot
 
 class Functions:
     def __init__(self, given : dict) -> None:
-        self.givenx : tuple = self.initx(given)
-        self.giveny : tuple = self.inity(given)
+        self.givenx : tuple = tuple(given.keys())
+        self.giveny : tuple = tuple(given.values())
         if not len(self.givenx).__eq__(len(self.giveny)):
             raise ValueError("legnth of list x and list y are different. Check duplicate number !")
         self.x_ : float = self.init_(self.givenx)
@@ -12,15 +12,9 @@ class Functions:
         self.covxx : float = self.initcov(self.givenx)
         self.covyy : float = self.initcov(self.giveny)
         self.covxy : float = self.initcov(self.givenx, self.giveny)
-        self.r : float = self.r()
-        self.a : float = self.inita()
-        self.b : float = self.initb()
-
-    def initx(self, given : dict) -> tuple:
-        return tuple(given.keys())
-    
-    def inity(self, given : dict) -> tuple:
-        return tuple(given.values())
+        self.r : float = self.covxy / sqrt(self.covxx*self.covyy)
+        self.a : float = self.covxy/self.covxx
+        self.b : float = self.y_ - self.a * self.x_
 
     def init_(self, listof: tuple) -> float:
         return 1/len(listof) * sum(listof)
@@ -29,15 +23,6 @@ class Functions:
         if listb is None:
             return (1/len(lista) * sum(i**2 for i in lista)) - self.init_(lista)**2
         return (1/len(lista) * sum(i*j for i, j in zip(lista, listb)))  - self.init_(lista)*self.init_(listb)
-    
-    def r(self) -> float:
-        return self.covxy / sqrt(self.covxx*self.covyy)
-    
-    def inita(self):
-        return (self.covxy/self.covxx)
-    
-    def initb(self):
-        return self.y_ - self.a * self.x_
     
     def printfunc(self) -> str:
         return f"{round(self.a, 2)}x + {round(self.b, 2)}"
@@ -54,10 +39,8 @@ class Functions:
         - Affiche le point G
         - Affiche la courbe de régréssion linaire ainsi que son équation    
         """
-        x = self.x_
-        y = self.y_
-        size = (200)
-        scatter(x, y, s=size, c="coral", label="Point G")
+        size = (150)
+        scatter(self.x_, self.y_, s=size, c="coral", label="Point G")
 
         x = self.givenx
         y = self.giveny
