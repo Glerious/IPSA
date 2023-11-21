@@ -1,7 +1,8 @@
 from numpy import loadtxt, ones, c_
 from numpy import ndarray
-
 from numpy.linalg import solve, qr, norm
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 point = loadtxt("Ma313_Algèbre_numérique/TP3/py/ressources/TP3_partie2_points.dat")
@@ -29,6 +30,7 @@ def methodNormal(A: ndarray, b: ndarray):
 # 1 . 2 . Resolution par la méthode QR
 
 # Méthode QR plus longue (note rendu)
+# graph 3D
 
 def methodQR(A: ndarray, b: ndarray):
     Q, R = qr(A) # avec Q (n, p) et R (p, p) matrice carrée
@@ -47,3 +49,10 @@ x12, erreur12 = methodQR(A1, b1)
 A2, b2 = splitMatrix(data2)
 x21, erreur21 = methodNormal(A2, b2)
 x22, erreur22 = methodQR(A2, b2)
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(data1[:, 0], data1[:, 1], data1[:, 2], zdir='z', c= 'red')
+ax.scatter(data2[:, 0], data2[:, 1], data2[:, 2], zdir='z', c= 'blue')
+plt.show()
+
