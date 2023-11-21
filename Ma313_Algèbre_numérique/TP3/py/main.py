@@ -54,5 +54,5 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(data1[:, 0], data1[:, 1], data1[:, 2], zdir='z', c= 'red')
 ax.scatter(data2[:, 0], data2[:, 1], data2[:, 2], zdir='z', c= 'blue')
-plt.show()
+# plt.show()
 
