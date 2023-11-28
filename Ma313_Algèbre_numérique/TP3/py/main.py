@@ -39,16 +39,20 @@ def methodQR(A: ndarray, b: ndarray):
     return x, erreur
 
 # 1 . 3 . Résolution
+def resolve(matrix: ndarray):
+    A, b = splitMatrix(matrix=matrix)
+    x1, erreur1 = methodNormal(A, b)
+    x2, erreur2 = methodQR(A, b)
+    return (x1, erreur1), (x2, erreur2)
 
 # 1 . 3 . 1 Premier Jeu
-A1, b1 = splitMatrix(data1)
-x11, erreur11 = methodNormal(A1, b1)
-x12, erreur12 = methodQR(A1, b1)
+
+resolve(data1)
 
 # 1 . 3 . 2 Deuxième Jeu
-A2, b2 = splitMatrix(data2)
-x21, erreur21 = methodNormal(A2, b2)
-x22, erreur22 = methodQR(A2, b2)
+resolve(data2)
+
+# 1 . 4 Graphique 3D
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
