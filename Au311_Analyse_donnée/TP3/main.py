@@ -1,5 +1,5 @@
 from numpy import random, linspace
-from matplotlib.pyplot import scatter, title, show, hist, legend, plot
+from matplotlib.pyplot import show, hist, legend, plot
 from scipy.stats import poisson, norm, t
 
 # Exercice 1
