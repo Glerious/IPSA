@@ -109,7 +109,7 @@ show()
 # print(f"DATA1 :\nSolutions Equation normale :  \n{resolve1(data1)[0][0]}, \nSolutions QR : \n{resolve1(data1)[1][0]}")
 # print(f"DATA2 :\nSolutions Equation normale : \n{resolve1(data2)[0][0]}, \nSolutions QR : \n{resolve1(data2)[1][0]}")
 # print(f"POINT :\nSolutions Equation normale : \n{resolve2(point)[0][0]}, \nSolutions QR : \n{resolve2(point)[1][0]}")
-print(f"SINUS :\nSolutions Equation normale : \n{resolve3(x)[0][0]}, \nSolutions QR : \n{resolve3(x)[1][0]}")
+# print(f"SINUS :\nSolutions Equation normale : \n{resolve3(x)[0][0]}, \nSolutions QR : \n{resolve3(x)[1][0]}")
 
 # 0 Erreur
 # print(f"DATA1 :\nErreurs Equation normale : {resolve1(data1)[0][1]}, Erreurs QR : {resolve1(data1)[1][1]}")
