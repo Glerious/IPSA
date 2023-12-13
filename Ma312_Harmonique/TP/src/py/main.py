@@ -19,7 +19,7 @@ N = 128
 
 x1: ndarray = ones(N)
 x2: ndarray = array([1 if k == 0 else 0 for k in range(N)])
-x3: ndarray = array([0 if k == 1 else 0 for k in range(N)])
+x3: ndarray = array([1 if k == 1 else 0 for k in range(N)])
 x4: ndarray = array([cos(20 * k * pi / N) for k in range(N)])
 x5: ndarray = array([1 if k < N / 2 else 0 for k in range(N)])
 
@@ -42,9 +42,9 @@ def fourrierTransform2(func: ndarray):
     show()
 
 N = 1024
-T = 10  # Péridode
-deltaT = T / N # intervalle de temps
-fe = 1 / deltaT # fréquence d'échantillonnage
+T = 10
+deltaT = T / N
+fe = 1 / deltaT
 
 t = [i * deltaT for i in range(N)]
 
@@ -68,22 +68,21 @@ iterate = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
 def prouveParseval(func: ndarray):
     x = fft.fft(func)
     sum1 = sum(abs(func)**2)
-    sum2 = 1 / T * sum(abs(x)**2)
+    sum2 = 1 / N * sum(abs(x)**2)
 
-    return sum1, sum2, round(1 - sum1 * 100 / sum2, 5)
+    return sum1, sum2
 
-# for i in iterate:
-#     print(prouveParseval(i))
+for i in iterate:
+    print(prouveParseval(i))
 
-# 4 Compression d'un fichier audio
+# 4 Analyse d'un fichier audio
+def analyse(data):
+    x = abs(fft.fft(data))
+    plot(x[:int(N/2)])
+    show()
 
 data, fe = read(r"Ma312_Harmonique\TP\ressources\Note_03.aif")
 data_ = data[: ,0]
 N = len(data)
 
-def compress(data):
-    x = abs(fft.fft(data))
-    plot(x[:int(N/2)])
-    show()
-
-compress(data_)
+# analyse(data_)
