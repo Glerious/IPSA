@@ -18,23 +18,23 @@ def fourrierTransform(func: ndarray):
 N = 128
 
 # 1 . 1
-# fourrierTransform(ones(N))
+fourrierTransform(ones(N))
 
 # 1 . 2
 x2: ndarray = array([1 if k == 0 else 0 for k in range(N)])
-# fourrierTransform(x2)
+fourrierTransform(x2)
 
 # 1 . 3
 x3: ndarray = array([0 if k == 1 else 0 for k in range(N)])
-# fourrierTransform(x3)
+fourrierTransform(x3)
 
 # 1 . 4
 x4: ndarray = array([cos(20 * k * pi / N) for k in range(N)])
-# fourrierTransform(x4)
+fourrierTransform(x4)
 
 # 1 . 5
 x5: ndarray = array([1 if k < N / 2 else 0 for k in range(N)])
-# fourrierTransform(x5)
+fourrierTransform(x5)
 
 
 
