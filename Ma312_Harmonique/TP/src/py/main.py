@@ -81,8 +81,8 @@ def analyse(data):
     plot(x[:int(N/2)])
     show()
 
-data, fe = read(r"Ma312_Harmonique\TP\ressources\Note_03.aif")
-data_ = data[: ,0]
-N = len(data)
+# data, fe = read(r"Ma312_Harmonique\TP\ressources\Note_03.aif")
+# data_ = data[: ,0]
+# N = len(data)
 
 # analyse(data_)

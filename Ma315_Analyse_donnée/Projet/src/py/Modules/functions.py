@@ -1,25 +1,26 @@
 from math import sqrt
-from matplotlib.pyplot import show, scatter, title, legend, plot
+from matplotlib.pyplot import show, scatter, title, legend, plot, xlabel, ylabel
 
 class Functions:
-    def __init__(self, given : dict) -> None:
-        self.givenx : tuple = tuple(given.keys())
-        self.giveny : tuple = tuple(given.values())
+    def __init__(self, given : dict, x: str = "axe x", y: str = "axe y") -> None:
+        self.axes: tuple = (x, y)
+        self.givenx: tuple = tuple(given.keys())
+        self.giveny: tuple = tuple(given.values())
         if not len(self.givenx).__eq__(len(self.giveny)):
             raise ValueError("legnth of list x and list y are different. Check duplicate number !")
-        self.x_ : float = self.init_(self.givenx)
-        self.y_ : float = self.init_(self.giveny)
-        self.covxx : float = self.initcov(self.givenx)
-        self.covyy : float = self.initcov(self.giveny)
-        self.covxy : float = self.initcov(self.givenx, self.giveny)
-        self.r : float = self.covxy / sqrt(self.covxx*self.covyy)
-        self.a : float = self.covxy/self.covxx
-        self.b : float = self.y_ - self.a * self.x_
+        self.x_: float = self.init_(self.givenx)
+        self.y_: float = self.init_(self.giveny)
+        self.covxx: float = self.initcov(self.givenx)
+        self.covyy: float = self.initcov(self.giveny)
+        self.covxy: float = self.initcov(self.givenx, self.giveny)
+        self.r: float = self.covxy / sqrt(self.covxx*self.covyy)
+        self.a: float = self.covxy/self.covxx
+        self.b: float = self.y_ - self.a * self.x_
 
     def init_(self, listof: tuple) -> float:
         return 1/len(listof) * sum(listof)
     
-    def initcov(self, lista : tuple, listb : tuple = None):
+    def initcov(self, lista: tuple, listb: tuple = None):
         if listb is None:
             return (1/len(lista) * sum(i**2 for i in lista)) - self.init_(lista)**2
         return (1/len(lista) * sum(i*j for i, j in zip(lista, listb)))  - self.init_(lista)*self.init_(listb)
@@ -30,11 +31,18 @@ class Functions:
     def func(self, x : float):
         return self.a * x + self.b
 
-    def antifunc(self, y : float):
+    def antifunc(self, y: float):
         return (y - self.b) / self.a
     
-    def graph(self):
-        """ Affiche le graphique de la méthode de régrassion linéaire
+    def graph(self, xbyy: bool = True):
+        """ Affiche le graphique de la méthode de régression linéaire
+
+        Parameters
+        ----------
+        - xbyy: permet de fixer le sens de la régréssion (True x par y, False y par x)
+        
+        Returns
+        ----------
         - Affiche le graphiques de point
         - Affiche le point G
         - Affiche la courbe de régréssion linaire ainsi que son équation    
@@ -44,14 +52,21 @@ class Functions:
 
         x = self.givenx
         y = self.giveny
+        
         scatter(x, y)
 
-        x = [0, max(self.givenx)]
-        y = [self.func(i) for i in x]
+        if xbyy:
+            x = [0, max(self.givenx)]
+            y = [self.func(i) for i in x]
+        else:
+            y = [0, max(self.giveny)]
+            x = [self.antifunc(i) for i in y]
         plot(x, y, label=self.printfunc())
         
         legend()
         title("Rayon Spectral de la méthode de relaxation en fonctions de w")
+        xlabel(self.axes[0])
+        ylabel(self.axes[1])
         show()
 
     def adjusty(self):
@@ -65,3 +80,9 @@ class Functions:
     
     def explained_var(self):
         return self.covyy * (1 - self.r**2)
+    
+    def antiresidual_var(self):
+        return self.covxx / self.r**2
+    
+    def antiexplained_var(self):
+        return self.covxx * (1 - 1 / self.r**2)
